@@ -41,6 +41,7 @@
   <button onclick="abrirGrafica()">Mostrar Gráfica</button>
   <button onclick="caminar()">caminar</button>
   <button onclick="dormir()">dormir</button>
+  <button onclick="susto()">susto</button>
 
   <div id="graficaContainer">
     <canvas id="grafica"></canvas>
@@ -94,6 +95,12 @@
       const ritmoCardiaco = 75;
       ritmoReposo = Math.floor(Math.random() * (100 - ritmoCardiaco) + ritmoCardiaco);
       console.log("Simulando caminata...");
+    }
+    function susto(){
+      const ritmoCardiaco = 100;
+      ritmoReposo = Math.floor(Math.random() * (120 - ritmoCardiaco) + ritmoCardiaco);
+      if (ritmoReposo > 120) ritmoReposo = 120;
+      console.log("Simulando susto...");
     }
 
     // Ejecutar cada 5 segundos
