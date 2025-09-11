@@ -39,6 +39,8 @@
   <h1>Simulador de Ritmo Cardíaco</h1>
   <div id="resultado">💓 -- lpm</div>
   <button onclick="abrirGrafica()">Mostrar Gráfica</button>
+  <button onclick="caminar()">caminar</button>
+  <button onclick="dormir()">dormir</button>
 
   <div id="graficaContainer">
     <canvas id="grafica"></canvas>
@@ -47,20 +49,25 @@
   <script>
     const datos = [];
     const etiquetas = [];
-    const duracion = 120; // últimos 2 minutos
-    let ritmoActual = 75; // valor inicial realista
+    const duracion = 5; // últimos medio minuto
+    let ritmoReposo = 75; // valor inicial realista
 
     function generarRitmo() {
       // Variación suave: ±3 lpm
       const cambio = Math.floor(Math.random() * 7) - 3; // -3 a +3
-      ritmoActual = Math.min(100, Math.max(60, ritmoActual + cambio));
+      ritmoReposo = Math.min(100, Math.max(60, ritmoReposo + cambio));
 
-      document.getElementById("resultado").innerText = `💓 ${ritmoActual} lpm`;
-
+      document.getElementById("resultado").innerText = `💓 ${ritmoReposo} lpm`;
+      // if (ritmoReposo > 75){
+      //   ritmoReposo = 75;
+      // }
+      // if (ritmoReposo > 55){
+      //   ritmoReposo = 55;
+      // }
       // Guardar datos y etiquetas
       const ahora = new Date();
       etiquetas.push(ahora.toLocaleTimeString());
-      datos.push(ritmoActual);
+      datos.push(ritmoReposo);
 
       // Mantener solo los últimos 2 minutos
       if (etiquetas.length > duracion) {
@@ -74,6 +81,19 @@
         window.miGrafica.data.datasets[0].data = datos;
         window.miGrafica.update();
       }
+      console.log("Ritmo generado:", ritmoReposo);
+      
+    }
+            function dormir(){
+      const ritmoCardiaco = 55;
+      ritmoReposo = Math.floor(Math.random() * (50 - ritmoCardiaco) + ritmoCardiaco);
+      if (ritmoReposo > 50) ritmoReposo = 50;
+      console.log("Simulando sueño...");
+    }
+    function caminar(){
+      const ritmoCardiaco = 75;
+      ritmoReposo = Math.floor(Math.random() * (100 - ritmoCardiaco) + ritmoCardiaco);
+      console.log("Simulando caminata...");
     }
 
     // Ejecutar cada 5 segundos
