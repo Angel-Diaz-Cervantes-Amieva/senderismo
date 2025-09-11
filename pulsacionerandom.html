@@ -85,21 +85,20 @@
       console.log("Ritmo generado:", ritmoReposo);
       
     }
-            function dormir(){
+     function dormir(){
       const ritmoCardiaco = 55;
-      ritmoReposo = Math.floor(Math.random() * (50 - ritmoCardiaco) + ritmoCardiaco);
-      if (ritmoReposo > 50) ritmoReposo = 50;
+      ritmoReposo = Math.floor(Math.random()* (65 - ritmoCardiaco + 1)) + ritmoCardiaco;
+
       console.log("Simulando sueño...");
     }
     function caminar(){
-      const ritmoCardiaco = 75;
-      ritmoReposo = Math.floor(Math.random() * (100 - ritmoCardiaco) + ritmoCardiaco);
+      const ritmoCardiaco = 80;
+      ritmoReposo = Math.floor(Math.random() * (110 - ritmoCardiaco + 1)) + ritmoCardiaco;
       console.log("Simulando caminata...");
     }
     function susto(){
-      const ritmoCardiaco = 100;
-      ritmoReposo = Math.floor(Math.random() * (120 - ritmoCardiaco) + ritmoCardiaco);
-      if (ritmoReposo > 120) ritmoReposo = 120;
+      const ritmoCardiaco = 120;
+      ritmoReposo = Math.floor(Math.random() * (150 - ritmoCardiaco + 1)) + ritmoCardiaco;
       console.log("Simulando susto...");
     }
 
