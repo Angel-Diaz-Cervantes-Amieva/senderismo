@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulador de Ritmo Cardíaco Realista</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background: crimson;
+      color: white;
+      border-radius: 8px;
+      margin: 10px;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-size: 32px;
+      font-weight: bold;
+      color: darkgreen;
+    }
+    #graficaContainer {
+      width: 80%;
+      max-width: 800px;
+      margin: 30px auto;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Simulador de Ritmo Cardíaco</h1>
+  <div id="resultado">💓 -- lpm</div>
+  <button onclick="abrirGrafica()">Mostrar Gráfica</button>
+
+  <div id="graficaContainer">
+    <canvas id="grafica"></canvas>
+  </div>
+
+  <script>
+    const datos = [];
+    const etiquetas = [];
+    const duracion = 120; // últimos 2 minutos
+    let ritmoActual = 75; // valor inicial realista
+
+    function generarRitmo() {
+      // Variación suave: ±3 lpm
+      const cambio = Math.floor(Math.random() * 7) - 3; // -3 a +3
+      ritmoActual = Math.min(100, Math.max(60, ritmoActual + cambio));
+
+      document.getElementById("resultado").innerText = `💓 ${ritmoActual} lpm`;
+
+      // Guardar datos y etiquetas
+      const ahora = new Date();
+      etiquetas.push(ahora.toLocaleTimeString());
+      datos.push(ritmoActual);
+
+      // Mantener solo los últimos 2 minutos
+      if (etiquetas.length > duracion) {
+        etiquetas.shift();
+        datos.shift();
+      }
+
+      // Actualizar gráfica si existe
+      if (window.miGrafica) {
+        window.miGrafica.data.labels = etiquetas;
+        window.miGrafica.data.datasets[0].data = datos;
+        window.miGrafica.update();
+      }
+    }
+
+    // Ejecutar cada 5 segundos
+    setInterval(generarRitmo, 5000);
+    generarRitmo(); // inmediato al cargar
+
+    function abrirGrafica() {
+      document.getElementById("graficaContainer").style.display = "block";
+
+      if (!window.miGrafica) {
+        const ctx = document.getElementById('grafica').getContext('2d');
+        window.miGrafica = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: etiquetas,
+            datasets: [{
+              label: 'Ritmo Cardíaco (lpm)',
+              data: datos,
+              borderColor: 'crimson',
+              backgroundColor: 'rgba(220,20,60,0.2)',
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: {
+            animation: { duration: 500 },
+            scales: {
+              y: {
+                min: 50,
+                max: 110
+              }
+            }
+          }
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>
