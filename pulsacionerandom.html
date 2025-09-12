@@ -56,7 +56,7 @@
     function generarRitmo() {
       // Variación suave: ±3 lpm
       const cambio = Math.floor(Math.random() * 7) - 3; // -3 a +3
-      ritmoReposo = Math.min(100, Math.max(60, ritmoReposo + cambio));
+      ritmoReposo = Math.min(150, Math.max(60, ritmoReposo + cambio));
 
       document.getElementById("resultado").innerText = `💓 ${ritmoReposo} lpm`;
       // if (ritmoReposo > 75){
@@ -129,7 +129,7 @@
             scales: {
               y: {
                 min: 50,
-                max: 110
+                max: 150
               }
             }
           }
