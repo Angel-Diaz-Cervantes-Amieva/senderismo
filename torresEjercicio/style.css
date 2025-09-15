@@ -1,0 +1,27 @@
+ body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background: crimson;
+      color: white;
+      border-radius: 8px;
+      margin: 10px;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-size: 32px;
+      font-weight: bold;
+      color: darkgreen;
+    }
+    #graficaContainer {
+      width: 80%;
+      max-width: 800px;
+      margin: 30px auto;
+      display: none;
+    }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Ritmo Cardíaco Realista</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Simulador de Ritmo Cardíaco</h1>
+  <div id="resultado">💓 -- lpm <span id="statusIndicator" class="status-indicator"></span></div>
+  
+  <div class="button-container">
+   <button onclick="abrirGrafica()">Mostrar Gráfica</button>
+  <button onclick="caminar()">Caminar</button>
+  <button onclick="dormir()">Dormir</button>
+  <button onclick="susto()">Susto</button>
+  </div>
+
+  <div id="graficaContainer">
+    <canvas id="grafica"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="grafica.js"></script>
+</body>
+</html>
