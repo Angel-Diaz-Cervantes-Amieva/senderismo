@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',   
+     'corsheaders',
     'rest_framework_simplejwt',  
     'rest_framework_simplejwt.token_blacklist',     
     'home',  
@@ -57,6 +58,27 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',  # Debe estar AL PRINCIPIO
+]
+
+# Configuración de CORS
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React dev server
+    "http://127.0.0.1:3000",
+]
+
+# O si quieres permitir todos los orígenes en desarrollo:
+CORS_ALLOW_ALL_ORIGINS = True  # Solo para desarrollo, no producción
+
+# Para permitir cookies y headers de autenticación
+CORS_ALLOW_CREDENTIALS = True
+
+# Headers permitidos
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'x-csrftoken',
 ]
 
 ROOT_URLCONF = 'web_WalkPIP.urls'
