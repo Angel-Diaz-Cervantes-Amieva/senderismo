@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simulador de Ritmo Cardíaco Realista</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <h1>Simulador de Ritmo Cardíaco</h1>
   <div id="resultado">💓 -- lpm <span id="statusIndicator" class="status-indicator"></span></div>
-  
+
   <div class="button-container">
-   <button onclick="abrirGrafica()">Mostrar Gráfica</button>
-  <button onclick="caminar()">Caminar</button>
-  <button onclick="dormir()">Dormir</button>
-  <button onclick="susto()">Susto</button>
+    <button onclick="abrirGrafica()">Mostrar Gráfica</button>
+    <button onclick="caminar()">Caminar</button>
+    <button onclick="dormir()">Dormir</button>
+    <button onclick="susto()">Susto</button>
   </div>
 
   <div id="graficaContainer">
     <canvas id="grafica"></canvas>
   </div>
 
+  <div id="contenedor-oficinista"
+    style="display: flex; justify-content: center; align-items: center; margin: 20px auto; max-width: 720px;">
+    <canvas id="grafica-oficinista" style="max-width: 100%; width: 100%;"></canvas>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="grafica.js"></script>
+  <script src="oficinista.js"></script>
 </body>
+
 </html>
