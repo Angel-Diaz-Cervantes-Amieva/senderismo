@@ -24,7 +24,7 @@ const datos = [];
     }
 
     // Mostrar el valor
-    document.getElementById("resultado").innerText = `💓 ${ritmoReposo} lpm`;
+   // document.getElementById("resultado").innerText = `💓 ${ritmoReposo} lpm`;
 
     // Guardar datos para la gráfica
     const ahora = new Date();
