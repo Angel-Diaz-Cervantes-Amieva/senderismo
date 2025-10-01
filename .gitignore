@@ -1,0 +1,17 @@
+# Python cache - TODAS las variantes
+__pycache__/
+*_pycache_*/
+*pycache*/
+*.py[cod]
+*$py.class
+
+# Django
+db.sqlite3
+*.log
+media/
+staticfiles/
+
+# Entornos virtuales
+venv/
+.venv/
+env/

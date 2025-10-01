@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import CitaViewSet, RegistroUsuarioView, LoginUsuarioView, SessionActividadViewSet
+from .views import CitaViewSet, RegistroUsuarioView, LoginUsuarioView, SessionActividadViewSet, MetricaCorazonCreateView
 
 router = DefaultRouter()
 router.register(r'agendar', CitaViewSet, basename='cita')
@@ -10,4 +10,5 @@ urlpatterns = [
     path('', include(router.urls)),
     path('registro/', RegistroUsuarioView.as_view(), name='registro'),
     path('login/', LoginUsuarioView.as_view(), name='login'),
+    path('metrica-corazon/', MetricaCorazonCreateView.as_view(), name='metrica-corazon-create'),
 ]

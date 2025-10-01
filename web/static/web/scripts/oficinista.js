@@ -113,11 +113,46 @@ function generarRitmoOficinista() {
         datosOficinista = datosOficinista.slice(-mxPuntos);
     }
 
+
     // Mostrar evento y latidos en el HTML
     const eventoElem = document.getElementById('eventoActual');
     if (eventoElem) {
         eventoElem.textContent = `Evento: ${eventoActual || '--'} | Latidos: ${ritmoActual} lpm`;
     }
+
+    // Enviar datos a la API
+    enviarMetricaCorazon(ritmoActual);
+
+}
+
+function enviarMetricaCorazon(ritmo) {
+    fetch('http://127.0.0.1:8000/api/metrica-corazon/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            ritmo_cardiaco: ritmo,
+            presion: 66,
+            oxigenacion: 66,
+            session: 4
+        })
+    })
+        .then(response => {
+            if (!response.ok) {
+                // Opcional: mostrar error en consola
+                console.error('Error al enviar métrica:', response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Opcional: manejar respuesta
+            // console.log('Métrica enviada:', data);
+        })
+        .catch(error => {
+            // Opcional: mostrar error en consola
+            console.error('Error de red:', error);
+        });
 
     // Actualizar gráfica
     actualizarGraficaOficinista();

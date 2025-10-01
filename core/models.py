@@ -143,4 +143,4 @@ class MetricaCorazon(models.Model):
     ritmo_cardiaco = models.FloatField()
     presion = models.FloatField()
     oxigenacion = models.FloatField()
-    fecha_hora = models.DateTimeField()
+    fecha_hora = models.DateTimeField(auto_now_add=True, null=True, blank=True)

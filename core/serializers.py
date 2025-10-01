@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Usuario, TipoUsuario, ContactoEmergencia, Cita,SessionActividad
+from .models import Usuario, TipoUsuario, ContactoEmergencia, Cita,SessionActividad,MetricaCorazon
 
 class ContactoEmergenciaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,8 +37,6 @@ class CitaSerializer(serializers.ModelSerializer):
         read_only_fields = ['usuario', 'creado_en']
 
 
-# web/serializers.py
-
 class SessionActividadSerializer(serializers.ModelSerializer):
     class Meta:
         model = SessionActividad
@@ -46,3 +44,8 @@ class SessionActividadSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             "fecha_hora_fin": {"required": False, "allow_null": True}
         }
+
+class MetricaCorazonSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MetricaCorazon
+        fields = '__all__'

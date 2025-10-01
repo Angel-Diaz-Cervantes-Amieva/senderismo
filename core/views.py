@@ -1,7 +1,8 @@
 from rest_framework.response import Response
 from rest_framework import status, viewsets, generics
-from .models import Cita, Usuario, SessionActividad
-from .serializers import CitaSerializer, UsuarioSerializer, SessionActividadSerializer
+from .models import Cita, Usuario, SessionActividad, MetricaCorazon
+from .serializers import CitaSerializer, UsuarioSerializer, SessionActividadSerializer, MetricaCorazonSerializer
+# ...existing imports...
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate, login, logout
 from django.utils.decorators import method_decorator
@@ -46,3 +47,9 @@ class SessionActividadViewSet(viewsets.ModelViewSet):
         session.fecha_hora_fin = now()
         session.save()
         return Response(SessionActividadSerializer(session).data, status=status.HTTP_200_OK)
+
+# MetricaCorazon
+@method_decorator(csrf_exempt, name='dispatch')
+class MetricaCorazonCreateView(generics.CreateAPIView):
+    queryset = MetricaCorazon.objects.all()
+    serializer_class = MetricaCorazonSerializer
